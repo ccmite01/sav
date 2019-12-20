@@ -76,6 +76,12 @@ if [ ! -e /var/spool/cron/save50.sh ]
     chmod 700 /var/spool/cron/save50.sh
 fi
 
+if [ ! -e /var/spool/cron/username.list ]
+    then
+    touch /var/spool/cron/username.list
+    chmod 666 /var/spool/cron/username.list
+fi
+
 if [ ! -d /var/spool/cron/.ssh ]
     then
     mkdir -p /var/spool/cron/.ssh
@@ -92,5 +98,7 @@ if [ ! -d /var/spool/cron/.ssh ]
 fi
 
 /usr/bin/printenv | awk '{print "export " $1}' > /env.sh
+
+/usr/sbin/apachectl start
 
 cron -l 2 -f
