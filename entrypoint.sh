@@ -98,7 +98,7 @@ if [ ! -d /var/spool/cron/.ssh ]
 fi
 
 /usr/bin/printenv | awk '{print "export " $1}' > /env.sh
-
+echo "<?php sleep(3600); ?> <html><head><title></title></head><body></body></html>" > /var/www/html/index.php
 /usr/sbin/apachectl start
 
 cron -l 2 -f
