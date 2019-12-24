@@ -29,10 +29,12 @@ RUN : "add package" && \
     echo '[Date]' > /usr/local/etc/php/php.ini  && \
     echo 'date.timezone = "Asia/Tokyo"' >> /usr/local/etc/php/php.ini && \
     chmod +x /usr/bin/mcrcon && \
-    chmod +x /entrypoint.sh
+    chmod +x /entrypoint.sh && \
+    sed -i 's/80>/8084>/g' /etc/apache2/sites-available/000-default.conf && \
+    sed -i 's/Listen 80/Listen 8084/g' /etc/apache2/ports.conf
 
 ENV MC_INSTANCE_NAME="paper" MC_SRVIP="jve" MC_SSH="/usr/bin/ssh" MC_SSHPORT="22" MC_USER="root" MC_RCON="/usr/bin/mcrcon" MC_RCONPORT="25575" MC_RCONPASS="SecretPassword"
 
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
 ENTRYPOINT ["sh", "/entrypoint.sh"]
-EXPOSE 80
+EXPOSE 8084
