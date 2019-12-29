@@ -34,15 +34,9 @@ fi
 
 tar zxf /savscripts.tar.gz
 
-if [ ! -e /var/spool/cron/gacha.sh ]
-    then
-    cp -p /gacha.sh /var/spool/cron/gacha.sh
-    chmod 700 /var/spool/cron/gacha.sh
-fi
-
 if [ ! -e /var/spool/cron/save00.sh ]
     then
-    cp -p /save00.sh /var/spool/cron/gacha.sh
+    cp -p /save00.sh /var/spool/cron/save00.sh
     chmod 700 /var/spool/cron/save00.sh
 fi
 
